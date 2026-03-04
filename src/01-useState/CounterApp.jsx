@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { Card, CardHeader, CardBody } from '../components/ui/Card';
+import { Button } from '../components/ui/Button';
 
 export const CounterApp = () => {
 
@@ -11,22 +13,36 @@ export const CounterApp = () => {
     const { counter1, counter2, counter3 } = state;
 
   return (
-    <>
-        <h1>Counter1: { counter1 }</h1>
-        <h1>Counter2: { counter2 }</h1>
-        <h1>Counter3: { counter3 }</h1>
+    <Card className="animate-fade-in-up" elevated>
+      <CardHeader title="Contador Múltiple" description="Estado con múltiples contadores" />
+      <CardBody>
+        <div className="flex flex-col gap-3">
+          <div className="flex items-center justify-between">
+            <span>Counter 1:</span>
+            <span className="text-lg font-semibold">{counter1}</span>
+          </div>
+          <div className="flex items-center justify-between">
+            <span>Counter 2:</span>
+            <span className="text-lg font-semibold">{counter2}</span>
+          </div>
+          <div className="flex items-center justify-between">
+            <span>Counter 3:</span>
+            <span className="text-lg font-semibold">{counter3}</span>
+          </div>
+        </div>
 
-        <hr />
+        <hr className="my-4" style={{ border: 'none', borderTop: '1px solid var(--color-border)' }} />
 
-        <button 
-            className="btn" 
-            onClick={ 
-                () => setCounter({
-                    ...state,
-                    counter1: counter1 + 1,
-                })
-            }>+1</button>
+        <Button 
+            onClick={() => setCounter({
+                ...state,
+                counter1: counter1 + 1,
+            })}
+        >
+          +1
+        </Button>
     
-    </>
+      </CardBody>
+    </Card>
   )
 }

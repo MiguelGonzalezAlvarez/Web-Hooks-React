@@ -7,7 +7,6 @@ export const Message = () => {
     useEffect(() => {
         
         const onMouseMove = ({ x, y }) => {
-            // const coords = { x, y };
             setCoords({ x, y })
         }
 
@@ -21,9 +20,9 @@ export const Message = () => {
 
 
   return (
-    <>
-        <h3>Usuario ya existe</h3>
-        { JSON.stringify( coords ) }
-    </>
+    <div className="animate-fade-in" style={{ padding: '12px', background: 'var(--color-primary-light)', color: 'var(--color-primary)', borderRadius: '8px', marginTop: '10px' }}>
+        <h4 style={{ margin: 0, fontSize: '14px' }}>Usuario ya existe</h4>
+        <p className="text-sm" style={{ margin: '4px 0 0' }}>Coords: { JSON.stringify( coords ) }</p>
+    </div>
   )
 }

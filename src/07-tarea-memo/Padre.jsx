@@ -1,5 +1,7 @@
-import { Hijo } from './Hijo'
 import { useCallback, useState } from 'react';
+import { Card, CardHeader, CardBody, CardFooter } from '../components/ui/Card';
+import { Button } from '../components/ui/Button';
+import { Hijo } from './Hijo';
 
 export const Padre = () => {
 
@@ -13,25 +15,37 @@ export const Padre = () => {
       [],
     );
        
-
+    const reset = useCallback(() => {
+        setValor(0);
+    }, []);
 
     return (
-        <div>
-            <h1>Padre</h1>
-            <p> Total: { valor } </p>
-
-            <hr />
-
-            {
-                numeros.map( n => (
-                    <Hijo 
-                        key={ n }
-                        numero={ n }
-                        incrementar={ incrementar }
-                    />
-                ))
-            }
-            {/* <Hijo /> */}
-        </div>
+        <Card className="animate-fade-in-up" elevated>
+            <CardHeader 
+                title="Comunicación Padre-Hijo" 
+                description="Usa React.memo y useCallback para evitar re-renders innecesarios"
+            />
+            <CardBody>
+                <div className="flex items-center justify-between mb-4">
+                    <span className="text-lg">Total acumulado:</span>
+                    <span className="badge badge-success">{valor}</span>
+                </div>
+                
+                <div className="flex gap-2 flex-wrap">
+                    {numeros.map( n => (
+                        <Hijo 
+                            key={ n }
+                            numero={ n }
+                            incrementar={ incrementar }
+                        />
+                    ))}
+                </div>
+            </CardBody>
+            <CardFooter>
+                <Button variant="outline" size="sm" onClick={reset}>
+                    Reset
+                </Button>
+            </CardFooter>
+        </Card>
     )
 }

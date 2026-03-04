@@ -1,53 +1,63 @@
-import { useEffect } from 'react';
 import { useForm } from '../hooks/useForm';
-
+import { Card, CardHeader, CardBody } from '../components/ui/Card';
+import { Button } from '../components/ui/Button';
+import { Input } from '../components/ui/Input';
 
 export const FormWithCustomHook = () => {
+  const { formState, onInputChange, onResetForm, username, email, password } = useForm({
+    username: '',
+    email: '',
+    password: '',
+  });
 
-    const { formState, onInputChange, onResetForm, username, email, password } = useForm({
-        username: '',
-        email: '',
-        password: ''
-    });
-
-    // const { username, email, password } = formState;
-  
-
-    return (
-        <>
-            <h1>Formulario con custom Hook</h1> 
-            <hr />
-
-            <input 
-                type="text" 
-                className="form-control"
-                placeholder="Username"
-                name="username"
-                value={ username }
-                onChange={ onInputChange }
+  return (
+    <Card className="animate-fade-in-up mt-4 stagger-1" elevated>
+      <CardHeader title="Formulario con Custom Hook" description="Uso del custom hook useForm" />
+      <CardBody>
+        <div className="flex flex-col gap-4">
+          <div>
+            <label className="text-sm text-muted mb-1 block">Username</label>
+            <Input
+              type="text"
+              placeholder="Username"
+              name="username"
+              value={username}
+              onChange={onInputChange}
+              aria-label="Username"
             />
+          </div>
 
-            <input 
-                type="email" 
-                className="form-control mt-2"
-                placeholder="fernando@google.com"
-                name="email"
-                value={ email }
-                onChange={ onInputChange }
+          <div>
+            <label className="text-sm text-muted mb-1 block">Email Address</label>
+            <Input
+              type="email"
+              placeholder="Email"
+              name="email"
+              value={email}
+              onChange={onInputChange}
+              aria-label="Email Address"
             />
+          </div>
 
-            <input 
-                type="password" 
-                className="form-control mt-2"
-                placeholder="Contraseña"
-                name="password"
-                value={ password }
-                onChange={ onInputChange }
+          <div>
+            <label className="text-sm text-muted mb-1 block">Password</label>
+            <Input
+              type="password"
+              placeholder="Password"
+              name="password"
+              value={password}
+              onChange={onInputChange}
+              aria-label="Password"
             />
+          </div>
 
-
-            <button onClick={ onResetForm } className="btn btn-primary mt-2">Borrar</button>
-
-        </>
-    )
-}
+          <div className="flex gap-2">
+            <Button onClick={onResetForm} variant="outline">
+              Borrar
+            </Button>
+          </div>
+        </div>
+      </CardBody>
+    </Card>
+  );
+};

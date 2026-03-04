@@ -1,15 +1,14 @@
 import React from 'react';
+import { Button } from '../components/ui/Button';
 
 export const Hijo = React.memo(({ numero, incrementar }) => {
+  console.log('  Me volví a generar :(  ');
 
-    console.log('  Me volví a generar :(  ');
+  return (
+    <Button onClick={() => incrementar(numero)} className="animate-scale-in">
+      +{numero}
+    </Button>
+  );
+});
 
-    return (
-        <button
-            className="btn btn-primary mr-3"
-            onClick={ () => incrementar( numero ) }
-        >
-            { numero }
-        </button>
-    )
-})
+Hijo.displayName = 'Hijo';

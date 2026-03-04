@@ -1,6 +1,7 @@
 import { useCounter, useFetch } from '../hooks';
 import { LoadingQuote, Quote } from '../03-examples';
-
+import { Card, CardHeader, CardBody, CardFooter } from '../components/ui/Card';
+import { Button } from '../components/ui/Button';
 
 export const Layout = () => {
 
@@ -9,23 +10,22 @@ export const Layout = () => {
     const { author, quote } = !!data && data[0];
     
     return (
-        <>
-            <h1>BreakingBad Quotes</h1>
-            <hr />
-
-            {
-                isLoading
-                 ? <LoadingQuote />
-                 : <Quote author={ author } quote={ quote } />
-            }
-                      
-            <button 
-                className="btn btn-primary"
-                disabled={ isLoading }
-                onClick={ () => increment() }>
-                Next quote
-            </button>
-
-        </>
+        <Card className="animate-fade-in-up" elevated>
+            <CardHeader title="useLayoutEffect" description="Midiendo tamaños de elementos" />
+            <CardBody>
+                {
+                    isLoading
+                     ? <LoadingQuote />
+                     : <Quote author={ author } quote={ quote } />
+                }
+            </CardBody>
+            <CardFooter>
+                <Button 
+                    disabled={ isLoading }
+                    onClick={ () => increment() }>
+                    Next quote
+                </Button>
+            </CardFooter>
+        </Card>
     )
 }
